@@ -1,0 +1,16 @@
+name: Self-Hosted Runner Task
+
+on: workflow_dispatch
+
+jobs:
+  run-on-mine:
+    runs-on: self-hosted
+    steps:
+      - name: Print Machine Info
+        run: |
+          echo "Hostname: $(hostname)"
+          echo "Current Directory: $(pwd)"
+      - name: Create a file
+        run: |
+          echo "GitHub Actions was here!" > github_test.txt
+          ls -l github_test.txt

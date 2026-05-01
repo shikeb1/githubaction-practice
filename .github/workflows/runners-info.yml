@@ -1,0 +1,38 @@
+name: Runner Exploration
+
+on: [push, workflow_dispatch]
+
+jobs:
+  task-1-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Runner Info
+        run: |
+          echo "OS: Linux (Ubuntu)"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
+      - name: Task 2 - Pre-installed Tools
+        run: |
+          docker --version
+          python3 --version
+          node --version
+          git --version
+
+  task-1-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Print Runner Info
+        shell: pwsh
+        run: |
+          echo "OS: Windows"
+          echo "Hostname: $env:COMPUTERNAME"
+          echo "User: $env:USERNAME"
+
+  task-1-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Print Runner Info
+        run: |
+          echo "OS: macOS"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
