@@ -12,3 +12,15 @@ jobs:
 
             - name: Print Hello
               run: echo "Hello from GitHub Actions!"        
+
+            - name: Print current date and time
+              run: date
+
+            - name: Print the branch name
+              run: echo "The branch that triggered the run is ${{ github.ref_name }}"
+
+            - name: List the files in the repo
+              run: ls -a
+
+            - name: Print the runner's operating system
+              run: echo "The runner operating system is ${{ runner.os }}"
