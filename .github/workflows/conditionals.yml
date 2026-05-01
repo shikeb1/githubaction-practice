@@ -1,0 +1,26 @@
+name: Conditionals
+
+on: [push, pull_request]
+
+jobs:
+  push-only-job:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This job runs only on push events"
+
+  conditional-steps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Main branch step
+        if: github.ref == 'refs/heads/main'
+        run: echo "I am on the main branch"
+
+      - name: Step that fails
+        id: fail_step
+        continue-on-error: true
+        run: exit 1
+
+      - name: Run if failed
+        if: failure()
+        run: echo "The previous step failed, but since continue-on-error was true, the job keeps running. I am running because if: failure() is true!"
